@@ -10,6 +10,13 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
+  <div class="animated-bg" id="animatedBg" aria-hidden="true"></div>
+  <canvas id="particleCanvas" class="particle-canvas" aria-hidden="true"></canvas>
+  <div class="spotlight" id="spotlight" aria-hidden="true"></div>
+  <div class="floating-control" aria-hidden="false">
+    <label class="control-label"><input type="checkbox" id="cinemaToggle"> Modo Cinemático</label>
+    <button class="btn btn-primary" id="changeColorBtnFloat" title="Cambiar color de la app" style="margin-left:8px;">🎨</button>
+  </div>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
       <div class="brand">
@@ -49,6 +56,7 @@
           <p id="viewSubtitle">Control general del restaurante en tiempo real.</p>
         </div>
         <div class="topbar-actions">
+          <button class="btn btn-secondary" id="changeColorBtn" title="Cambiar paleta de colores">Cambiar color de la app</button>
           <span class="badge badge-success" id="sessionBadge">Sistema local listo</span>
         </div>
       </header>
@@ -317,6 +325,9 @@
   <div class="toast" id="toast"></div>
 
   <script src="assets/js/data.js"></script>
+  <script src="assets/js/particles.js"></script>
+  <script src="assets/js/ux.js"></script>
   <script src="assets/js/app.js"></script>
+  <button id="themeCycleBtn" class="theme-cycle-btn" aria-label="Cambiar color de la app">Cambiar color</button>
 </body>
 </html>

@@ -51,3 +51,79 @@ button,input,textarea,select{font:inherit}button{cursor:pointer}
 @media (max-width:1180px){.stats-grid,.mesas-grid,.menu-grid,.kitchen-board{grid-template-columns:repeat(2,1fr)}.grid-two{grid-template-columns:1fr}}
 @media (max-width:860px){.app-shell{grid-template-columns:1fr}.sidebar{position:fixed;left:-100%;top:0;bottom:0;width:280px;z-index:1100;transition:.25s ease}.sidebar.open{left:0}.main-content{padding:18px}.topbar{padding:16px}.hero-panel{flex-direction:column;align-items:flex-start}}
 @media (max-width:640px){.stats-grid,.mesas-grid,.menu-grid,.kitchen-board,.form-grid{grid-template-columns:1fr}.action-row,.hero-actions,.section-head{flex-direction:column;align-items:stretch}.topbar{align-items:flex-start}}
+
+/* --- Animated background and interactive UX --- */
+.animated-bg{position:fixed;inset:0;z-index:-3;pointer-events:none;background:linear-gradient(120deg,#0f172a,#0b1220,#06202a);background-size:400% 400%;animation:gradientShift 18s ease infinite;opacity:0.95}
+.particle-canvas{position:fixed;inset:0;z-index:-2;pointer-events:none}
+.spotlight{position:fixed;inset:0;z-index:-1;pointer-events:none;mix-blend-mode:overlay;background:radial-gradient(circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 15%, transparent 40%)}
+
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+.floating-control{position:fixed;right:18px;top:18px;background:rgba(255,255,255,0.06);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:12px;z-index:1300}
+.floating-control .control-label{color:#e6eefc;font-weight:700;font-size:.95rem;display:inline-flex;align-items:center;gap:8px}
+.floating-control input{width:16px;height:16px}
+.floating-control #changeColorBtnFloat{padding:8px 10px;border-radius:10px;font-weight:800}
+
+/* Parallax micro-interactions for panels */
+.hero-panel, .card{transform:translate3d(0,0,0);will-change:transform}
+.parallax-tilt{transition:transform 0.12s cubic-bezier(.2,.9,.2,1)}
+
+/* Cinematic intensification */
+:root.cinematic .animated-bg{animation-duration:9s;filter:contrast(1.08) saturate(1.08)}
+:root.cinematic .spotlight{background:radial-gradient(circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.03) 18%, transparent 50%)}
+
+/* Ensure content stands above background */
+.app-shell{position:relative;z-index:1}
+
+@media (prefers-reduced-motion:reduce){.animated-bg,.parallax-tilt{animation:none;transition:none}}
+
+/* --- Galactic purple theme --- */
+.theme-galactic .animated-bg{background:linear-gradient(120deg,#070014,#1a0529,#3b0b52);filter:saturate(1.1)}
+.theme-galactic .spotlight{background:radial-gradient(circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(150,85,255,0.16) 0%, rgba(120,60,200,0.04) 14%, transparent 44%)}
+.theme-galactic .sidebar{background:linear-gradient(180deg,#0a0220 0%,#1b0530 100%)}
+.theme-galactic .brand-logo{background:linear-gradient(135deg,#8b5cf6,#7c3aed);box-shadow:0 10px 30px rgba(124,58,237,.35)}
+.theme-galactic .topbar{background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid rgba(124,58,237,0.08)}
+.theme-galactic .hero-panel{background:linear-gradient(135deg,rgba(124,58,237,.06),rgba(99,102,241,.04));border-color:rgba(124,58,237,0.12)}
+.theme-galactic .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-color:rgba(124,58,237,0.06)}
+.theme-galactic .btn-primary{background:#7c3aed}
+.theme-galactic .btn-primary:hover{background:#6d28d9}
+.theme-galactic .btn-secondary{background:rgba(255,255,255,0.04);color:#efe8ff}
+.theme-galactic .badge{background:rgba(255,255,255,0.04);color:#efe8ff}
+.theme-galactic body{color:#e9e6f8}
+.theme-galactic .stat-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01))}
+
+/* Make interfaces visually distinct in galactic theme */
+.theme-galactic .menu-card{border-radius:14px;box-shadow:0 8px 30px rgba(60,8,90,0.18)}
+.theme-galactic .mesa-card{border-radius:10px;border-style:solid;border-width:1px;border-color:rgba(124,58,237,0.06);box-shadow:0 12px 40px rgba(20,6,40,0.25)}
+.theme-galactic .kitchen-board{grid-template-columns:repeat(2,1fr)}
+.theme-galactic .menu-grid{grid-template-columns:repeat(2,1fr)}
+
+/* Smooth transitions when switching theme */
+.theme-galactic .app-shell, .theme-galactic .sidebar, .theme-galactic .main-content, .theme-galactic .card, .theme-galactic .hero-panel{transition:background .36s ease,color .36s ease,box-shadow .36s ease,transform .18s ease}
+
+/* --- Neon theme --- */
+.theme-neon .animated-bg{background:linear-gradient(120deg,#03040d,#00121a,#001933);filter:contrast(1.05) saturate(1.15)}
+.theme-neon .spotlight{background:radial-gradient(circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(0,255,200,0.12) 0%, rgba(0,200,255,0.04) 14%, transparent 44%)}
+.theme-neon .brand-logo{background:linear-gradient(135deg,#06b6d4,#0ea5e9);box-shadow:0 10px 30px rgba(6,182,212,.2)}
+.theme-neon .sidebar{background:linear-gradient(180deg,#00111a 0%,#001428 100%)}
+.theme-neon .btn-primary{background:#06b6d4}
+.theme-neon .btn-primary:hover{background:#0891b2}
+.theme-neon .card{border-color:rgba(6,182,212,0.06);box-shadow:0 10px 30px rgba(2,10,20,0.4)}
+.theme-neon body{color:#eaffff}
+.theme-neon .menu-card{box-shadow:0 8px 40px rgba(2,8,20,0.28)}
+.theme-neon .mesa-card{border-radius:8px;border-color:rgba(6,182,212,0.06)}
+.theme-neon .kitchen-board{grid-template-columns:repeat(3,1fr)}
+
+/* --- Theme cycle button and entry animation --- */
+.theme-cycle-btn{position:fixed;right:18px;bottom:18px;z-index:1400;background:linear-gradient(90deg,#fff,#f1f5f9);color:#0f172a;border-radius:999px;padding:12px 18px;font-weight:800;border:none;box-shadow:0 18px 40px rgba(15,23,42,.18)}
+.theme-cycle-btn:hover{transform:translateY(-4px)}
+
+/* Entrance animation */
+body{opacity:0;transition:opacity .6s ease;background-attachment:fixed}
+body.loaded{opacity:1}
+.app-shell{transform:translateY(8px) scale(.998);opacity:0;transition:transform .6s cubic-bezier(.2,.9,.2,1),opacity .6s ease}
+body.loaded .app-shell{transform:none;opacity:1}
+.hero-panel, .card{opacity:0;transform:translateY(14px) scale(.997);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.2,1)}
+body.loaded .hero-panel, body.loaded .card{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){.theme-cycle-btn,body,.app-shell,.hero-panel,.card{transition:none}}
